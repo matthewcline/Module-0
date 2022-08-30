@@ -126,6 +126,7 @@ def test_transitive(a: float, b: float, c: float) -> None:
     # bca
     # cab
     # cba
+    
     if lt(a, b) and lt(b, c):
         assert lt(a, c)
     if lt(a, c) and lt(c, b):
