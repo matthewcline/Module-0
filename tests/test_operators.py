@@ -107,16 +107,37 @@ def test_sigmoid(a: float) -> None:
     * It crosses 0 at 0.5
     * It is  strictly increasing.
     """
-    # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    # TODO: need to test negatives??
+    # TODO: I think this should be exclusive of 0 and 1
+    assert 0.0 < sigmoid(a) <= 1.0
+    assert_close(1 - sigmoid(a), sigmoid(neg(a)))
+    assert eq(sigmoid(0), 0.5)
+    # TODO: do we need to change small_floats to something else since we should be testing up to 10?
+    # assert
 
 
 @pytest.mark.task0_2
 @given(small_floats, small_floats, small_floats)
 def test_transitive(a: float, b: float, c: float) -> None:
     "Test the transitive property of less-than (a < b and b < c implies a < c)"
-    # TODO: Implement for Task 0.2.
-    raise NotImplementedError("Need to implement for Task 0.2")
+    # abc
+    # acb
+    # bac
+    # bca
+    # cab
+    # cba
+    if lt(a, b) and lt(b, c):
+        assert lt(a, c)
+    if lt(a, c) and lt(c, b):
+        assert lt(a, b)
+    if lt(b, a) and lt(a, c):
+        assert lt(b, c)
+    if lt(b, c) and lt(c, a):
+        assert lt(b, a)
+    if lt(c, a) and lt(a, b):
+        assert lt(c, b)
+    if lt(c, b) and lt(b, a):
+        assert lt(c, a)
 
 
 @pytest.mark.task0_2
